@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❤️ To My Best Friend - Forever & Always</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Confetti Script -->
+    <script src="/confetti.browser.min.js"></script>
+    <script>
+        if (typeof confetti === 'undefined') {
+            document.write('<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"><\/script>');
+        }
+    </script>
+
+    <style>
+        :root {
+            --primary: #e91e63;
+            --primary-light: #ff6090;
+            --gold: #ffd700;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35)),
+            url("{{ url_for('static', filename='friendship.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            padding: 40px 20px;
+            overflow-x: hidden;
+        }
+
+        /* Top-left Back button */
+        .top-back-btn {
+            position: fixed;
+            top: 22px;
+            left: 24px;
+            z-index: 100;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 20px;
+            border-radius: 50px;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: all 0.25s ease;
+        }
+
+        .top-back-btn:hover {
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.85), rgba(255, 64, 129, 0.85));
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(233, 30, 99, 0.45);
+            color: #ffffff;
+        }
+
+        /* Ambient glowing lights */
+        .ambient-light {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(233, 30, 99, 0.25), transparent 70%);
+            top: 10%;
+            left: 5%;
+            filter: blur(90px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .ambient-light-2 {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(142, 36, 170, 0.25), transparent 70%);
+            bottom: 10%;
+            right: 5%;
+            filter: blur(90px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Floating Love Particles */
+        .heart-particle {
+            position: fixed;
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            z-index: 2;
+            animation: floatUpLove 10s linear infinite;
+        }
+
+        @keyframes floatUpLove {
+            0% {
+                transform: translateY(105vh) scale(0.8) rotate(0deg);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.65;
+            }
+
+            85% {
+                opacity: 0.65;
+            }
+
+            100% {
+                transform: translateY(-15vh) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main Container */
+        .wrapper {
+            position: relative;
+            z-index: 10;
+            max-width: 680px;
+            width: 100%;
+        }
+
+        /* Transparent Glass Board to let background picture show through */
+        .content-card {
+            background: rgba(10, 5, 18, 0.38);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 36px;
+            padding: 45px 35px;
+            color: #ffffff;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+            text-align: center;
+            animation: cardFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes cardFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.96);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Top ribbon */
+        .ribbon {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 18px;
+            background: rgba(233, 30, 99, 0.32);
+            border: 1px solid rgba(255, 105, 180, 0.5);
+            border-radius: 50px;
+            color: #ffb2c3;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #ffffff, #ffd1dc, #ff80ab);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.7));
+        }
+
+        .handwritten-sub {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            color: #ffd700;
+            margin-bottom: 30px;
+            display: block;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Quotes styling - semi-transparent with high legibility */
+        .quotes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin: 25px 0 35px 0;
+        }
+
+        .quote-box {
+            position: relative;
+            background: rgba(0, 0, 0, 0.32);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 20px;
+            padding: 22px 24px;
+            font-size: 17px;
+            line-height: 1.6;
+            color: #ffffff;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: left;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+        }
+
+        .quote-box:hover {
+            transform: translateY(-3px);
+            background: rgba(0, 0, 0, 0.45);
+            border-color: rgba(255, 105, 180, 0.5);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .quote-box .icon {
+            font-size: 24px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .quote-box .quote-text {
+            display: inline;
+            letter-spacing: 0.3px;
+        }
+
+        .quote-box strong {
+            color: #ffd1dc;
+            font-weight: 700;
+        }
+
+        h2.footer-wish {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            color: #ffd1dc;
+            margin-top: 10px;
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.85);
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 500px) {
+            .top-back-btn {
+                top: 14px;
+                left: 14px;
+                padding: 7px 14px;
+                font-size: 13px;
+            }
+
+            .content-card {
+                padding: 30px 20px;
+                border-radius: 26px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .handwritten-sub {
+                font-size: 22px;
+            }
+
+            .quote-box {
+                font-size: 15px;
+                padding: 16px 18px;
+            }
+
+            h2.footer-wish {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Left Corner Back Button (Simple text only) -->
+    <a href="/" class="top-back-btn" title="Back to Birthday Card">← Back</a>
+
+    <div class="ambient-light"></div>
+    <div class="ambient-light-2"></div>
+
+    <div class="wrapper">
+        <div class="content-card">
+
+            <div class="ribbon">
+                <span>💌</span>
+                <span>From The Bottom Of My Heart</span>
+                <span>💌</span>
+            </div>
+
+            <h1>To My Dear Friend</h1>
+            <span class="handwritten-sub">Thank you for being a good friend for me ✨</span>
+
+            <div class="quotes-list">
+                <div class="quote-box">
+                    <span class="icon">🌸</span>
+                    <span class="quote-text">
+                        "Every moment spent with you is a book of memories; friendship means a world like you."
+                    </span>
+                </div>
+
+                <div class="quote-box">
+                    <span class="icon">💫</span>
+                    <span class="quote-text">
+                        "You are a rare bond I found in my life. May our friendship last forever."
+                    </span>
+                </div>
+
+                <div class="quote-box">
+                    <span class="icon">🌈</span>
+                    <span class="quote-text">
+                        "Thank you for being a wonderful friend in my life, and making every moment so colourful with
+                        your friendship."
+                    </span>
+                </div>
+            </div>
+
+            <h2 class="footer-wish">🎂 Happy Birthday Madam Garu 💖</h2>
+
+        </div>
+    </div>
+
+    <script>
+        // Confetti celebration on friendship page
+        function burstFriendshipConfetti() {
+            if (typeof confetti !== 'function') return;
+
+            confetti({
+                particleCount: 75,
+                spread: 80,
+                origin: { x: 0.1, y: 0.8 },
+                colors: ['#ff4081', '#ffd700', '#ff80ab', '#ffffff']
+            });
+
+            confetti({
+                particleCount: 75,
+                spread: 80,
+                origin: { x: 0.9, y: 0.8 },
+                colors: ['#ff4081', '#ffd700', '#ff80ab', '#ffffff']
+            });
+        }
+
+        // Fire once on load
+        window.addEventListener('load', () => {
+            setTimeout(burstFriendshipConfetti, 400);
+        });
+
+        // Floating heart particles
+        const hearts = ['❤️', '💖', '✨', '🌸', '💫'];
+        function spawnHeart() {
+            const h = document.createElement('div');
+            h.className = 'heart-particle';
+            h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            h.style.left = `${Math.random() * 95}vw`;
+            const duration = 8 + Math.random() * 6;
+            h.style.animationDuration = `${duration}s`;
+            document.body.appendChild(h);
+
+            setTimeout(() => {
+                h.remove();
+            }, duration * 1000);
+        }
+
+        for (let i = 0; i < 8; i++) {
+            setTimeout(spawnHeart, i * 400);
+        }
+        setInterval(spawnHeart, 1600);
+    </script>
+</body>
+
+</html>
