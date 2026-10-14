@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 Happy Birthday Madam Garu ❤️</title>
+    <meta name="description" content="A magical and heartfelt birthday surprise for Madam Garu!">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Confetti Script (Local with CDN fallback) -->
+    <script src="{{ url_for('static', filename='confetti.browser.min.js') }}"></script>
+    <script>
+        if (typeof confetti === 'undefined') {
+            document.write('<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"><\/script>');
+        }
+    </script>
+
+    <style>
+        :root {
+            --primary: #e91e63;
+            --primary-light: #ff6090;
+            --primary-dark: #b0003a;
+            --accent-gold: #fbc02d;
+            --bg-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 40%, #a1c4fd 100%);
+            --card-bg: rgba(255, 255, 255, 0.86);
+            --card-border: rgba(255, 255, 255, 0.95);
+            --shadow-subtle: 0 10px 30px rgba(233, 30, 99, 0.15);
+            --shadow-glow: 0 20px 60px rgba(216, 27, 96, 0.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Ambient floating background elements */
+        .ambient-glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 105, 180, 0.4), transparent 70%);
+            top: -100px;
+            left: -100px;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+            animation: pulseGlow 8s infinite alternate ease-in-out;
+        }
+
+        .ambient-glow-2 {
+            position: fixed;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(161, 196, 253, 0.5), transparent 70%);
+            bottom: -100px;
+            right: -100px;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+            animation: pulseGlow 10s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                transform: scale(1) translate(0, 0);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: scale(1.2) translate(30px, 30px);
+                opacity: 0.9;
+            }
+        }
+
+        /* Floating background particles */
+        .floating-bubble {
+            position: fixed;
+            font-size: 24px;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+            animation: floatUp 12s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(110vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.7;
+            }
+
+            90% {
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(-20vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main Container & Card */
+        .card-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 490px;
+            perspective: 1000px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 42px 34px;
+            border-radius: 32px;
+            border: 2px solid var(--card-border);
+            box-shadow: var(--shadow-glow), 0 2px 10px rgba(255, 255, 255, 0.6) inset;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: cardEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 70px rgba(216, 27, 96, 0.32), 0 2px 12px rgba(255, 255, 255, 0.8) inset;
+        }
+
+        @keyframes cardEntrance {
+            0% {
+                opacity: 0;
+                transform: scale(0.9) translateY(40px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Card Shimmer Border Overlay */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.25),
+                    transparent);
+            transform: rotate(45deg);
+            animation: shineSweep 7s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shineSweep {
+            0% {
+                transform: translateY(-100%) rotate(45deg);
+            }
+
+            30%,
+            100% {
+                transform: translateY(100%) rotate(45deg);
+            }
+        }
+
+        /* Crown / Birthday Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 18px;
+            background: linear-gradient(135deg, #fff0f5, #ffe4e9);
+            border: 1px solid rgba(233, 30, 99, 0.2);
+            border-radius: 50px;
+            color: #d81b60;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+            box-shadow: 0 3px 10px rgba(233, 30, 99, 0.1);
+            animation: bounceSoft 2.5s infinite ease-in-out;
+        }
+
+        @keyframes bounceSoft {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        /* Photo Frame with Luxury Golden/Rose Border */
+        .photo-wrapper {
+            position: relative;
+            display: inline-block;
+            margin: 0 auto 22px auto;
+            border-radius: 26px;
+            padding: 6px;
+            background: linear-gradient(135deg, #ffd700, #ff8da1, #f48fb1, #ffd700);
+            background-size: 300% 300%;
+            animation: gradientBorder 6s ease infinite;
+            box-shadow: 0 12px 28px rgba(233, 30, 99, 0.25);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .photo-wrapper:hover {
+            transform: scale(1.04) rotate(1deg);
+        }
+
+        @keyframes gradientBorder {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .photo-wrapper img {
+            display: block;
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 3px solid #ffffff;
+            transition: filter 0.3s ease;
+        }
+
+        .photo-wrapper:hover img {
+            filter: brightness(1.03);
+        }
+
+        /* Corner Sparkle Badge */
+        .photo-tag {
+            position: absolute;
+            bottom: -10px;
+            right: 12px;
+            background: linear-gradient(135deg, #ff4081, #e91e63);
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(233, 30, 99, 0.35);
+            border: 2px solid #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #c2185b 0%, #e91e63 50%, #ad1457 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(233, 30, 99, 0.1);
+        }
+
+        .script-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 26px;
+            color: #d81b60;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .friend-desc {
+            color: #555555;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .friend-desc span {
+            color: #e91e63;
+            font-weight: 600;
+        }
+
+        /* CTA Button Container */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .surprise-btn {
+            position: relative;
+            padding: 16px 42px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #ff4081 0%, #e91e63 50%, #c2185b 100%);
+            color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.45);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            width: 100%;
+            max-width: 290px;
+        }
+
+        .surprise-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.35),
+                    transparent);
+            transition: 0.5s;
+        }
+
+        .surprise-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 14px 35px rgba(233, 30, 99, 0.55);
+            background: linear-gradient(135deg, #ff5252 0%, #e91e63 50%, #ad1457 100%);
+        }
+
+        .surprise-btn:hover::before {
+            left: 100%;
+        }
+
+        .surprise-btn:active {
+            transform: translateY(1px) scale(0.98);
+        }
+
+        /* Paper cannon visual indicators on both sides */
+        .cannon-indicator {
+            position: fixed;
+            bottom: 12px;
+            font-size: 34px;
+            z-index: 50;
+            pointer-events: none;
+            animation: bounceCannon 1.5s infinite ease-in-out;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+        }
+
+        .cannon-left {
+            left: 15px;
+            transform: rotate(35deg);
+        }
+
+        .cannon-right {
+            right: 15px;
+            transform: rotate(-35deg) scaleX(-1);
+        }
+
+        @keyframes bounceCannon {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-8px) scale(1.1);
+            }
+        }
+
+        /* Responsive styling */
+        @media (max-width: 500px) {
+            .card {
+                padding: 32px 20px;
+                border-radius: 26px;
+            }
+
+            .photo-wrapper img {
+                width: 210px;
+                height: 210px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .script-subtitle {
+                font-size: 22px;
+            }
+
+            .cannon-indicator {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Ambient Glowing Light Orbs -->
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- Side Cannon Visual Indicators -->
+    <div class="cannon-indicator cannon-left">🎉</div>
+    <div class="cannon-indicator cannon-right">🎉</div>
+
+    <!-- Main Surprise Card -->
+    <div class="card-container">
+        <div class="card">
+
+            <div class="badge">
+                <span>✨</span>
+                <span>The Traditional Queen Special Day</span>
+                <span>✨</span>
+            </div>
+
+            <!-- Profile Image Frame -->
+            <div class="photo-wrapper" id="photoFrame" title="Click for a sparkle burst!">
+                <img src="{{ url_for('static', filename='birthday.jpg') }}" alt="Birthday Madam Garu">
+                <div class="photo-tag">👑 Queen</div>
+            </div>
+
+            <!-- Greeting Title -->
+            <h1>Happy Birthday Madam Garu</h1>
+            <span class="script-subtitle">Wishing you endless joy & smiles! ✨</span>
+
+            <p class="friend-desc">
+                To my most cherished and wonderful <span>best friend</span> ❤️<br>
+                May your special day be filled with pure magic and happiness!
+            </p>
+
+            <!-- Navigation Button -->
+            <div class="btn-container">
+                <a href="/friendship" id="surpriseCtaLink" class="surprise-btn">
+                    <span>Click Here 💝</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Confetti Cannon Logic & Floating Animations -->
+    <script>
+        // --- 1. Dual-Sided Paper Blast Cannon Engine ---
+        function fireDualPaperBlast() {
+            if (typeof confetti !== 'function') return;
+
+            // Festive palette for paper confetti
+            const colors = [
+                '#e91e63', '#ff4081', '#ff1744',
+                '#ffd700', '#ffb300', '#00e5ff',
+                '#7c4dff', '#00e676', '#ffffff'
+            ];
+
+            // LEFT SIDE CANNON BLAST (Shoots from bottom-left corner diagonally towards top-right)
+            confetti({
+                particleCount: 90,
+                angle: 60,
+                spread: 75,
+                origin: { x: 0, y: 0.85 },
+                colors: colors,
+                shapes: ['square', 'circle'],
+                scalar: 1.25,
+                ticks: 320,
+                gravity: 0.9,
+                drift: 0.15,
+                startVelocity: 60
+            });
+
+            // RIGHT SIDE CANNON BLAST (Shoots from bottom-right corner diagonally towards top-left)
+            confetti({
+                particleCount: 90,
+                angle: 120,
+                spread: 75,
+                origin: { x: 1, y: 0.85 },
+                colors: colors,
+                shapes: ['square', 'circle'],
+                scalar: 1.25,
+                ticks: 320,
+                gravity: 0.9,
+                drift: -0.15,
+                startVelocity: 60
+            });
+        }
+
+        // Secondary starry heart burst
+        function fireStarAndHeartBlast() {
+            if (typeof confetti !== 'function') return;
+
+            const specialColors = ['#ff4081', '#ffd700', '#ff6090', '#ffffff'];
+
+            // Left stars & hearts
+            confetti({
+                particleCount: 50,
+                angle: 55,
+                spread: 60,
+                origin: { x: 0.05, y: 0.75 },
+                colors: specialColors,
+                shapes: ['star', 'circle'],
+                scalar: 1.4,
+                ticks: 280,
+                startVelocity: 55
+            });
+
+            // Right stars & hearts
+            confetti({
+                particleCount: 50,
+                angle: 125,
+                spread: 60,
+                origin: { x: 0.95, y: 0.75 },
+                colors: specialColors,
+                shapes: ['star', 'circle'],
+                scalar: 1.4,
+                ticks: 280,
+                startVelocity: 55
+            });
+        }
+
+        // Center ceiling streamer drop
+        function fireCeilingShower() {
+            if (typeof confetti !== 'function') return;
+
+            confetti({
+                particleCount: 70,
+                spread: 100,
+                origin: { x: 0.5, y: 0.1 },
+                colors: ['#ffd700', '#ff4081', '#00e5ff', '#8e24aa'],
+                shapes: ['square', 'circle'],
+                scalar: 1.1,
+                gravity: 0.8,
+                ticks: 300
+            });
+        }
+
+        // Grand Welcoming Paper Blast Sequence (fires as soon as the user loads the page!)
+        function triggerWelcomeCelebration() {
+            // Immediate dual-side paper cannon blast!
+            fireDualPaperBlast();
+
+            // 450ms: Second powerful blast
+            setTimeout(() => {
+                fireDualPaperBlast();
+            }, 450);
+
+            // 1000ms: Golden stars and hearts wave from both sides
+            setTimeout(() => {
+                fireStarAndHeartBlast();
+            }, 1000);
+
+            // 1700ms: Grand finale combining both sides and top shower
+            setTimeout(() => {
+                fireDualPaperBlast();
+                fireCeilingShower();
+            }, 1700);
+        }
+
+        // Trigger on load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', triggerWelcomeCelebration);
+        } else {
+            triggerWelcomeCelebration();
+        }
+        window.addEventListener('load', () => {
+            setTimeout(fireDualPaperBlast, 200);
+        });
+
+        // Clicking the photo frame also fires a celebratory paper burst!
+        const photoFrame = document.getElementById('photoFrame');
+        if (photoFrame) {
+            photoFrame.addEventListener('click', () => {
+                fireDualPaperBlast();
+            });
+        }
+
+        // Intercept CTA button to fire a celebratory blast before navigating
+        const ctaLink = document.getElementById('surpriseCtaLink');
+        if (ctaLink) {
+            ctaLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                fireDualPaperBlast();
+                fireStarAndHeartBlast();
+                setTimeout(() => {
+                    window.location.href = ctaLink.getAttribute('href');
+                }, 550);
+            });
+        }
+
+        // --- 2. Floating Emojis Background Generator ---
+        const emojis = ['🎈', '💖', '✨', '🎂', '🌸', '🎁', '⭐', '🎉'];
+        function spawnFloatingEmoji() {
+            const el = document.createElement('div');
+            el.className = 'floating-bubble';
+            el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            el.style.left = `${Math.random() * 95}vw`;
+            const duration = 9 + Math.random() * 7;
+            el.style.animationDuration = `${duration}s`;
+            el.style.fontSize = `${18 + Math.random() * 18}px`;
+            document.body.appendChild(el);
+
+            setTimeout(() => {
+                el.remove();
+            }, duration * 1000);
+        }
+
+        // Spawn bubbles initially and periodically
+        for (let i = 0; i < 10; i++) {
+            setTimeout(spawnFloatingEmoji, i * 400);
+        }
+        setInterval(spawnFloatingEmoji, 1400);
+    </script>
+</body>
+
+</html>
